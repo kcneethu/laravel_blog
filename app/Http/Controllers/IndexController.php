@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Blog;
 
 class IndexController extends Controller
 {
     public function home()
     {
-        $blogs  = [];
-        return view('index', compact('blogs') );
+        $blogs  = Blog::with('category')->get();
+        $blogCount  = Blog::count();
+        return view('index', compact('blogs','blogCount') );
     }
 
     public function contact(){

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use App\Scopes\IsApprovedScope;
+use App\Models\Category;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Blog extends Model
 {
@@ -22,6 +24,14 @@ class Blog extends Model
         'blog_id','slug','user_id','title','caption' ,'content', 'category_id','is_approved'
     ];
 
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'published_at'
+    ];
 
     /**
      * The "booting" method of the model.
@@ -37,5 +47,17 @@ class Blog extends Model
         });
         
     }
+
+    /**
+     * Return the blog's category
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class, 'category_id','cat_id');
+    }
+
+
+
+
 
 }
