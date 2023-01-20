@@ -9,7 +9,7 @@ class IndexController extends Controller
 {
     public function home()
     {
-        $blogs  = Blog::with('category')->get();
+        $blogs  = Blog::with('category','first_media')->get();
         $blogCount  = Blog::count();
         return view('index', compact('blogs','blogCount') );
     }

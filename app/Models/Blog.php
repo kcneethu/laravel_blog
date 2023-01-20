@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use App\Scopes\IsApprovedScope;
 use App\Models\Category;
+use App\Models\Media;
+
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Blog extends Model
@@ -15,6 +17,12 @@ class Blog extends Model
     use HasFactory;
     use SoftDeletes;
 
+     /**
+     * Default primary key
+     *
+     * @var string
+     */
+    protected $primaryKey = 'blog_id';
      /**
      * The attributes that are mass assignable.
      *
@@ -51,13 +59,23 @@ class Blog extends Model
     /**
      * Return the blog's category
      */
-    public function category(): BelongsTo
+    public function category()
     {
         return $this->belongsTo(Category::class, 'category_id','cat_id');
     }
 
+    /**
+     * Return the blog's media
+     */
+    public function media()
+    {
+        return $this->hasMany(Media::class,'img_blog_id');
+    }
 
-
-
-
+    /**
+     * Return the blog's first media
+     */
+    public function first_media() {
+        return $this->hasMany(Media::class,'img_blog_id')->limit(1);
+    }
 }
