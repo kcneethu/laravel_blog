@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Blog;
+use App\Models\Comment;
 
 class IndexController extends Controller
 {
@@ -22,6 +23,14 @@ class IndexController extends Controller
     public function about(){
         $data  = [];
         return view('about', compact('data') );
+    }
+
+    public function blog($slug){
+        $blog = Blog::where('slug', $slug)
+               ->with('media','category')
+               ->first();
+        $comments = Comment::where('cmnt_blog_id', $blog->blog_id)->with('user')->get();
+        return view('view_blog', compact('blog','comments') );
     }
 
 

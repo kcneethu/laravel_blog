@@ -29,7 +29,7 @@ class Blog extends Model
      * @var array
      */
     protected $fillable = [
-        'blog_id','slug','user_id','title','caption' ,'content', 'category_id','is_approved'
+        'slug','user_id','title','caption' ,'content', 'category_id','is_approved'
     ];
 
     /**
@@ -77,5 +77,13 @@ class Blog extends Model
      */
     public function first_media() {
         return $this->hasMany(Media::class,'img_blog_id')->limit(1);
+    }
+
+    /**
+     * Return the blog's comments
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class,'cmnt_blog_id');
     }
 }

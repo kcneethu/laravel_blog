@@ -20,7 +20,7 @@
                             <small class="mr-2"><i class="fa fa-folder"></i> {{$blog->category->name}} </small>
                             <small class="mr-2"><i class="fa fa-comments"></i> 15 Comments</small>
                         </div>
-                        <a href="" class="btn btn-lg btn-outline-light mt-4">Read More</a>
+                        <a href="{{ route('blog',$blog->slug) }}" class="btn btn-lg btn-outline-light mt-4">Read More</a>
                     </div>
                 </div>
                 @endif
@@ -57,7 +57,7 @@
                 <p>
                     {{$blog->caption}}
                 </p>
-                <a class="btn btn-link p-0" href="">Read More <i class="fa fa-angle-right"></i></a>
+                <a class="btn btn-link p-0" href="{{ route('blog',$blog->slug) }}">Read More <i class="fa fa-angle-right"></i></a>
             </div>
         </div>
         @endif
@@ -103,7 +103,7 @@
                 <p>
                     {{$blog->caption}}
                 </p>
-                <a class="btn btn-link p-0" href="">Read More <i class="fa fa-angle-right"></i></a>
+                <a class="btn btn-link p-0" href="{{ route('blog',$blog->slug) }}">Read More <i class="fa fa-angle-right"></i></a>
             </div>
         </div>
         @endif

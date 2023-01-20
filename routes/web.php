@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'App\Http\Controllers\IndexController@home') -> name('home');
 Route::get('about', 'App\Http\Controllers\IndexController@about') -> name('about');
 Route::get('contact', 'App\Http\Controllers\IndexController@contact') -> name('contact');
+Route::get('blog/{slug}', 'App\Http\Controllers\IndexController@blog') -> name('blog');
 
 Route::post('register', 'App\Http\Controllers\UserController@userRegister') -> name('user.register');
 Route::post('login', 'App\Http\Controllers\UserController@userLogin') -> name('user.login');
